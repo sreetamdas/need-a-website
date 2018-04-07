@@ -3,13 +3,11 @@ import {
 	Collapse,
 	Navbar,
 	NavbarToggler,
-	NavbarBrand,
 	Nav,
 	NavItem,
 	NavLink,
 } from "reactstrap";
-// import qc_logo from "../css/images/QC_Logo.png";
-// import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 export default class MainNav extends React.Component {
 	constructor(props) {
@@ -35,42 +33,16 @@ export default class MainNav extends React.Component {
 					expand="md"
 					fixed="top"
 				>
-					{/* <LinkContainer
-						to="/"
-						style={{ padding: "0px", border: "0px" }}
-					>
-						<NavbarBrand>
-							<img src={qc_logo} height="65px" alt="QC Logo" />
-						</NavbarBrand>
-					</LinkContainer> */}
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
 							<NavItem>
-								{/* <LinkContainer to="/oldies">
+								<LinkContainer to="/login">
 									<NavLink className="white-text josefinSlab nav-link-text">
-										Oldies
+										Login or Signup
 									</NavLink>
-								</LinkContainer> */}
+								</LinkContainer>
 							</NavItem>
-							{this.state.dev ? (
-								<React.Fragment>
-									<NavItem>
-										{/* <LinkContainer to="/test">
-											<NavLink className="white-text josefinSlab nav-link-text">
-												Test
-											</NavLink>
-										</LinkContainer> */}
-									</NavItem>
-									<NavItem>
-										{/* <LinkContainer to="/add">
-											<NavLink className="white-text josefinSlab nav-link-text">
-												Add
-											</NavLink>
-										</LinkContainer> */}
-									</NavItem>
-								</React.Fragment>
-							) : null}
 						</Nav>
 					</Collapse>
 				</Navbar>

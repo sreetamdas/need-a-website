@@ -3,7 +3,7 @@ import "./App.css";
 import "./css/bootstrap.min.css";
 import "./css/styles.css";
 import MainNav from "./components/MainNav";
-import Introduction from "./components/Introduction";
+// import Introduction from "./components/Introduction";
 import Loader from "./components/Loader";
 import base from "./components/base";
 import NotFound from "./components/NotFound";
@@ -61,7 +61,7 @@ class App extends Component {
 	}
 
 	resolve_user(userID) {
-		let hashes = base.fetch(`/user-data/hash/${userID}`, {
+		base.fetch(`/user-data/hash/${userID}`, {
 			asArray: false,
 			context: this,
 			then(data) {
@@ -91,6 +91,7 @@ class App extends Component {
 
 		return (
 			<React.Fragment>
+				<MainNav />
 				{this.state.error_404 ? (
 					<NotFound />
 				) : this.state.loaded ? (
@@ -104,9 +105,6 @@ class App extends Component {
 				) : (
 					<Loader message="Loading" />
 				)}
-				<MainNav />
-				<Introduction />
-				{/* <Loader message="Hello World"/> */}
 			</React.Fragment>
 		);
 	}

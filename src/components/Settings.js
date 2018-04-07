@@ -39,7 +39,7 @@ export default class Settings extends React.Component {
 				});
 			},
 		});
-		let user_data = base.fetch(
+		base.fetch(
 			`/user-data/hash/${this.props.email.split("@")[0]}`,
 			{
 				asArray: false,
