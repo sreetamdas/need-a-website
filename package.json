@@ -1,0 +1,26 @@
+{
+  "name": "make-a-thon",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.0.1",
+    "@fortawesome/fontawesome-free-solid": "^5.0.1",
+    "@fortawesome/react-fontawesome": "^0.0.16",
+    "axios": "^0.17.1",
+    "prop-types": "^15.6.1",
+    "re-base": "2.2.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-router-bootstrap": "^0.24.4",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^5.0.0-alpha.4",
+    "reprogressbars": "^0.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

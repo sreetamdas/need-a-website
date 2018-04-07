@@ -1,0 +1,316 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Josefin+Slab|Roboto");
+.josefinSlab {
+    font-family: "Josefin Slab", serif;
+}
+
+.roboto {
+    font-family: "Roboto", sans-serif;
+}
+
+/* .specialElite {
+	font-family: "Special Elite", cursive;
+} */
+
+section {
+    padding: 100px 0;
+}
+
+.dark-bg {
+    color: #fff;
+    background-color: #000;
+}
+
+.white-bg {
+    color: black;
+    background-color: white;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+hr {
+    max-width: 50px;
+    border-color: #f05f40;
+    border-width: 3px;
+}
+
+hr.light {
+    border-color: #fff;
+}
+
+a {
+    color: #f73d1c;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: coral;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.bg-dark {
+    color: #fff;
+    background-color: #000;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.navbar-default {
+    border-color: rgba(34, 34, 34, 0.05);
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    background-color: #000;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.black-bg {
+    background-color: #000;
+}
+
+.white-text {
+    color: white !important;
+}
+
+.text-muted {
+    font-family: "Courier New";
+    color: navajowhite;
+}
+
+.orange {
+    color: #f73d1c !important;
+}
+
+.dark {
+    color: #222;
+}
+
+#credits:hover {
+    text-decoration: none;
+    color: black;
+    background-color: palegreen;
+    font-weight: 600;
+}
+
+#credits {
+    color: palegreen;
+}
+
+.noUnderline a:visited {
+    text-decoration: none;
+}
+
+.noUnderline a:hover {
+    text-decoration: none;
+}
+
+/* #copyright {
+	text-align: right;
+} */
+
+.full-page {
+    /* position: relative; */
+    display: table;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    background-color: #000;
+}
+
+.vertical-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fa-icons {
+    color: white;
+}
+
+.fa-icons div {
+    color: #f73d1c;
+}
+
+.fa-icons div p,
+h2 {
+    color: white;
+}
+
+.nav-link-text {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+input[type="text"] {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: "Roboto";
+    border-bottom: white, 2px, solid;
+}
+
+/* new */
+
+* {
+    box-sizing: border-box;
+}
+.group {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* LABEL ======================================= */
+
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+
+input:focus~label,
+input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: white;
+}
+
+/* BOTTOM BARS ================================= */
+
+.bar {
+    position: relative;
+    display: block;
+    width: 300px;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: white;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+/* active state */
+
+input:focus~.bar:before,
+input:focus~.bar:after {
+    width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* active state */
+
+input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: white;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background: white;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: white;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
