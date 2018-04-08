@@ -1,12 +1,14 @@
 import React from "react";
 import base from "./base";
 import Loader from "./Loader";
+import axios from "axios";
 
 export default class Settings extends React.Component {
 	constructor() {
 		super();
 
 		this.update_details = this.update_details.bind(this);
+		this.fileUpload = this.fileUpload.bind(this);
 
 		this.state = {
 			data: {
@@ -25,6 +27,8 @@ export default class Settings extends React.Component {
 				year: "",
 			},
 			loaded: false,
+			file: null,
+			uploaded: false,
 		};
 	}
 
@@ -39,9 +43,8 @@ export default class Settings extends React.Component {
 				});
 			},
 		});
-		base.fetch(
-			`/user-data/hash/${this.props.email.split("@")[0]}`,
-			{
+		if (this.props.email) {
+			base.fetch(`/user-data/hash/${this.props.email.split("@")[0]}`, {
 				asArray: false,
 				context: this,
 				then(data) {
@@ -54,7 +57,7 @@ export default class Settings extends React.Component {
 							loaded: true,
 						});
 					}
-					console.log(data);
+					// console.log(data);
 					if (data) {
 						base.fetch(`/user-data/users/${data}`, {
 							asArray: false,
@@ -69,46 +72,68 @@ export default class Settings extends React.Component {
 						});
 					}
 				},
-			},
-		);
+			});
+		} else {
+			this.setState({
+				loaded: true,
+			});
+		}
 	}
 
 	update_details(event) {
 		event.preventDefault();
 
-		const updated_user = {
-			username: this.username.value,
-			name: this.name.value,
-			email: this.email.value,
-			branch: this.branch.value,
-			college: this.college.value,
-			year: this.year.value,
-		};
+		let image_link = "";
 
-		let data = { ...this.state.data_local };
-		const position = data[`users`].push(updated_user);
-		// data[`hash`].push({
-		// 	username: position - 1,
-		// });
-		console.log("pos: ", position);
-		const key = `${updated_user.username}`;
-		// obj =
-		base.post(`/user-data/hash`, {
-			data: {
-				[key]: position - 1,
-			},
-			then(done) {
-				console.log(done);
-			},
-		});
-		this.setState({
-			data: data,
+		this.fileUpload().then(response => {
+			// console.log("actual:", response.data.data.link);
+			image_link = response.data.data.link;
+
+			const updated_user = {
+				username: this.email.value.split("@")[0],
+				name: this.name.value,
+				email: this.email.value,
+				branch: this.branch.value,
+				college: this.college.value,
+				year: this.year.value,
+				image: image_link,
+			};
+
+			let data = { ...this.state.data_local };
+			const position = data[`users`].push(updated_user);
+
+			// console.log("pos: ", position);
+			const key = `${updated_user.username}`;
+
+			base.post(`/user-data/hash`, {
+				data: {
+					[key]: position - 1,
+				},
+				then(done) {
+					console.log(done);
+				},
+			});
+			this.setState({
+				data: data,
+				uploaded: true,
+			});
 		});
 	}
 
-	// push_to_firebase() {
-	// 	this.
-	// }
+	fileUpload() {
+		const url = "https://api.imgur.com/3/image";
+		const formData = new FormData();
+		formData.append("image", this.uploadInput.files[0]);
+		const config = {
+			headers: {
+				"content-type": "multipart/form-data",
+				Authorization:
+					"Bearer 0d8b6ced9a30eabaebf9f823f077a91de84b5f02",
+				// "Client-ID": "3f651f76a9def53",
+			},
+		};
+		return axios.post(url, formData, config);
+	}
 
 	render() {
 		return (
@@ -127,6 +152,24 @@ export default class Settings extends React.Component {
 									{/* <div className="group">
 							<img />
 						</div> */}
+
+									<div>
+										{this.state.user.image ? (
+											<img
+												src={this.state.user.image}
+												width="200px"
+												height="200px"
+												className="rounded-circle img-fluid"
+											/>
+										) : null}
+										<input
+											type="file"
+											// onChange={this.onChange()}
+											ref={input =>
+												(this.uploadInput = input)
+											}
+										/>
+									</div>
 									<div className="group">
 										<p>Username</p>
 										<input
@@ -236,6 +279,14 @@ export default class Settings extends React.Component {
 									>
 										Save Changes
 									</button>
+									{this.state.uploaded ? (
+										<button
+											disabled
+											className="btn btn-lg btn-success"
+										>
+											Success!
+										</button>
+									) : null}
 									{/* <a href="#">Save</a> */}
 									{/* </div> */}
 								</div>

@@ -95,13 +95,23 @@ class App extends Component {
 				{this.state.error_404 ? (
 					<NotFound />
 				) : this.state.loaded ? (
-					<h1 className="full-page white-text josefinSlab">
-						{info.name}
-						<br />
-						{info.branch}
-						<br />
-						Batch of {info.year}
-					</h1>
+					<div className="full-page" style={{ paddingTop: "100px" }}>
+						{info.image ? (
+							<img
+								src={info.image}
+								width="200px"
+								height="200px"
+								className="rounded-circle img-fluid"
+							/>
+						) : null}
+						<h1 className="white-text josefinSlab">
+							{info.name}
+							<br />
+							{info.branch}
+							<br />
+							Batch of {info.year}
+						</h1>
+					</div>
 				) : (
 					<Loader message="Loading" />
 				)}
